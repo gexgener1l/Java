@@ -12,14 +12,14 @@ public class CheckerService {
 
             Document document = response.parse();
             String pageTitle = document.title();
-
+            String content = "content";
             // Мета-теги
             Elements metaTags = document.select("meta");
-            String metaDescription = metaTags.select("meta[name=description]").attr("content");
-            String metaKeywords = metaTags.select("meta[name=keywords]").attr("content");
+            String metaDescription = metaTags.select("meta[name=description]").attr(content);
+            String metaKeywords = metaTags.select("meta[name=keywords]").attr(content);
 
             // Дата последнего обновления
-            String lastModified = document.select("meta[name=last-modified]").attr("content");
+            String lastModified = document.select("meta[name=last-modified]").attr(content);
 
             return "{ \"status\": \"success\", \"message\": \"Сайт " + url + " проверен\", \"pageTitle\": \"" + pageTitle + "\", \"statusCode\": " + statusCode + ", \"lastModified\": \"" + lastModified + "\", \"metaDescription\": \"" + metaDescription + "\", \"metaKeywords\": \"" + metaKeywords + "\" }";
 
