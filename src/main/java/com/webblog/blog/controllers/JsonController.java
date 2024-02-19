@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class JsonController {
 
-    //private final CheckerService websiteCheckerService = new CheckerService();
     @GetMapping("/json1")
     public String getJsonData(@RequestParam(name = "param1", defaultValue = "default1") String param1,
                               @RequestParam(name = "param2", defaultValue = "default2") String param2) {
