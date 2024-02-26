@@ -1,6 +1,8 @@
 package com.webblog.blog.controllers;
 
+import com.webblog.blog.DTOClasses.ResponseDTO;
 import com.webblog.blog.serveces.CheckerService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,18 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class JsonController {
 
-    @GetMapping("/json1")
-    public String getJsonData(@RequestParam(name = "param1", defaultValue = "default1") String param1,
-                              @RequestParam(name = "param2", defaultValue = "default2") String param2) {
-
-        return "{"
-                + "\"param1\":\"" + param1 + "\","
-                + "\"param2\":\"" + param2 + "\""
-                + "}";
-    }
     @GetMapping("/check")
 
-    public String checkSite(@RequestParam String url) {
+    public ResponseEntity<ResponseDTO> checkSite(@RequestParam String url) {
         return CheckerService.checkSite(url);
     }
 }
