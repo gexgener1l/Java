@@ -1,6 +1,6 @@
 package com.webblog.blog.controllers;
 
-import com.webblog.blog.DTOClasses.ResponseDTO;
+import com.webblog.blog.dto_classes.ResponseDTO;
 import com.webblog.blog.serveces.CheckerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

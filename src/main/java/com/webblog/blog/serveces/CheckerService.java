@@ -1,6 +1,6 @@
 package com.webblog.blog.serveces;
 
-import com.webblog.blog.DTOClasses.ResponseDTO;
+import com.webblog.blog.dto_classes.ResponseDTO;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

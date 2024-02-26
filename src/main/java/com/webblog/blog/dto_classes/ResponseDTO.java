@@ -1,4 +1,4 @@
-package com.webblog.blog.DTOClasses;
+package com.webblog.blog.dto_classes;
 
 public class ResponseDTO {
     private String status;
