@@ -1,30 +1,25 @@
 package com.webblog.blog.controllers;
 
-import com.webblog.blog.dtoClasses.CheckerDTO;
-import com.webblog.blog.model.WebPost;
 import com.webblog.blog.serveces.CheckerService;
-import com.webblog.blog.serveces.WebPostService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class JsonController {
 
-    private final WebPostService webPostService;
+    @GetMapping("/json1")
+    public String getJsonData(@RequestParam(name = "param1", defaultValue = "default1") String param1,
+                              @RequestParam(name = "param2", defaultValue = "default2") String param2) {
 
-    @Autowired
-    public JsonController(WebPostService webPostService) {
-        this.webPostService = webPostService;
+        return "{"
+                + "\"param1\":\"" + param1 + "\","
+                + "\"param2\":\"" + param2 + "\""
+                + "}";
     }
-
     @GetMapping("/check")
-    public ResponseEntity<CheckerDTO> checkSite(@RequestParam String url) {
-        return CheckerService.checkSite(url);
-    }
 
-    @PostMapping("/webpost")
-    public ResponseEntity<WebPost> createWebPost(@RequestBody WebPost webPostDTO) {
-        return webPostService.createWebPost(webPostDTO);
+    public String checkSite(@RequestParam String url) {
+        return CheckerService.checkSite(url);
     }
 }
