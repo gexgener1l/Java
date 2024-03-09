@@ -32,13 +32,13 @@ public class TopicController {
         topic.setName(topicDTO.getName());
         topic.setDescription(topicDTO.getDescription());
         topic.setAuthorsId(topicDTO.getAuthorsId());
-
-        // If you need to convert AuthorDTOs to Author entities
-        // Set<Author> authors = mapAuthorsToEntities(topicDTO.getAuthorsId());
-        // topic.setAuthors(authors);
-
         topic = topicService.saveTopic(topic);
         return new TopicDTO(topic.getId(), topic.getName(), topic.getDescription(), topic.getAuthorsId());
+    }
+
+    @PutMapping("/{id}")
+    public TopicDTO updateTopic(@PathVariable Long id, @RequestBody TopicDTO updatedTopicDTO) {
+        return topicService.updateTopic(id, updatedTopicDTO);
     }
 
     @DeleteMapping("/{id}")

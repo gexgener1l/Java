@@ -30,25 +30,13 @@ public class AuthorController {
         return authorService.saveAuthor(authorDTO);
     }
 
+    @PutMapping("/{id}")
+    public AuthorDTO updateAuthor(@PathVariable Long id, @RequestBody AuthorDTO updatedAuthorDTO) {
+        return authorService.updateAuthor(id, updatedAuthorDTO);
+    }
     @DeleteMapping("/{id}")
     public void deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
     }
 
-    // New methods for working with topics
-
-//    @GetMapping("/{id}/topics")
-//    public List<Topic> getTopicsByAuthorId(@PathVariable Long id) {
-//        return authorService.getTopicsByAuthorId(id);
-//    }
-//
-//    @PostMapping("/{authorId}/topics/{topicId}")
-//    public void addTopicToAuthor(@PathVariable Long authorId, @PathVariable Long topicId) {
-//        authorService.addTopicToAuthor(authorId, topicId);
-//    }
-//
-//    @DeleteMapping("/{authorId}/topics/{topicId}")
-//    public void removeTopicFromAuthor(@PathVariable Long authorId, @PathVariable Long topicId) {
-//        authorService.removeTopicFromAuthor(authorId, topicId);
-//    }
 }

@@ -51,11 +51,17 @@ public class TopicService {
     private TopicDTO convertToDTO(Topic topic) {
         return new TopicDTO(topic.getId(), topic.getName(), topic.getDescription(), topic.getAuthorsId());
     }
+    public TopicDTO updateTopic(Long id, TopicDTO updatedTopicDTO) {
+        Topic existingTopic = topicRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Topic not found with id: " + id));
 
-    // If you need to convert author IDs to Author entities
-    // private Set<Author> mapAuthorsToEntities(Set<Long> authorsId) {
-    //     return authorsId.stream()
-    //             .map(authorId -> authorService.getAuthorById(authorId))
-    //             .collect(Collectors.toSet());
-    // }
+        // Update the existing topic's properties
+        existingTopic.setName(updatedTopicDTO.getName());
+        existingTopic.setDescription(updatedTopicDTO.getDescription());
+        existingTopic.setAuthorsId(updatedTopicDTO.getAuthorsId());
+        // Save the updated topic
+        existingTopic = topicRepository.save(existingTopic);
+
+        return convertToDTO(existingTopic);
+    }
 }

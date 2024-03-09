@@ -7,6 +7,8 @@ import com.webblog.blog.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -40,6 +42,7 @@ public class AuthorService {
         return convertToDTO(author);
     }
 
+
     public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
     }
@@ -47,4 +50,20 @@ public class AuthorService {
     private AuthorDTO convertToDTO(Author author) {
         return new AuthorDTO(author.getId(), author.getName(), author.getTopicsId());
     }
+
+
+    public AuthorDTO updateAuthor(@PathVariable Long id, @RequestBody AuthorDTO updatedAuthorDTO) {
+        Author existingAuthor = authorRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Author not found with id: " + id));
+
+        // Update the existing author's properties
+        existingAuthor.setName(updatedAuthorDTO.getName());
+        existingAuthor.setTopicsId(updatedAuthorDTO.getTopicsId());
+
+        // Save the updated author
+        existingAuthor = authorRepository.save(existingAuthor);
+
+        return convertToDTO(existingAuthor);
+    }
+
 }
