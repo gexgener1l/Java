@@ -1,6 +1,5 @@
 package com.webblog.blog.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -20,13 +19,6 @@ public class WebPost {
 //     Конструктор без параметров (для JPA)
     public WebPost() {
     }
-
-//     Конструктор с параметрами
-//    public WebPost(String title, String content) {
-//        this.title = title;
-//        this.content = content;
-//        this.createdAt = new Date();
-//    }
 
     // Геттеры и сеттеры
     public Long getId() {
@@ -52,6 +44,4 @@ public class WebPost {
     public void setCreatedAt(Date date) {
         this.createdAt = date;
     }
-
-    // Другие методы, если необходимо
 }

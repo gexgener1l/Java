@@ -1,7 +1,6 @@
 package com.webblog.blog.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.webblog.blog.model.WebPost;
 import jakarta.persistence.*;
 
 @Entity
