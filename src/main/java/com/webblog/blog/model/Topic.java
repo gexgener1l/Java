@@ -20,9 +20,6 @@ public class Topic {
     @Column(name = "author_id")
     private Set<Long> authorsId;
 
-    // Constructors, if needed
-
-    // Getter and setter for id
     public Long getId() {
         return id;
     }
@@ -30,8 +27,6 @@ public class Topic {
     public void setId(Long id) {
         this.id = id;
     }
-
-    // Getter and setter for name
     public String getName() {
         return name;
     }
@@ -40,7 +35,6 @@ public class Topic {
         this.name = name;
     }
 
-    // Getter and setter for description
     public String getDescription() {
         return description;
     }
@@ -49,7 +43,6 @@ public class Topic {
         this.description = description;
     }
 
-    // Getter and setter for authors
     public Set<Author> getAuthors() {
         return authors;
     }
@@ -58,7 +51,6 @@ public class Topic {
         this.authors = authors;
     }
 
-    // Getter and setter for authorsId
     public Set<Long> getAuthorsId() {
         return authorsId;
     }
@@ -67,5 +59,4 @@ public class Topic {
         this.authorsId = authorsId;
     }
 
-    // Additional getters and setters, if needed
 }

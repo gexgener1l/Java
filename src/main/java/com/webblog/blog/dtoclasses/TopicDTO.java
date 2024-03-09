@@ -18,12 +18,6 @@ public class TopicDTO {
     public TopicDTO() {
 
     }
-
-    // Constructors
-
-    // Other constructors...
-
-    // Getter and setter for id
     public Long getId() {
         return id;
     }
@@ -32,7 +26,6 @@ public class TopicDTO {
         this.id = id;
     }
 
-    // Getter and setter for name
     public String getName() {
         return name;
     }
@@ -41,7 +34,6 @@ public class TopicDTO {
         this.name = name;
     }
 
-    // Getter and setter for description
     public String getDescription() {
         return description;
     }
@@ -50,7 +42,6 @@ public class TopicDTO {
         this.description = description;
     }
 
-    // Getter and setter for authorsId
     public Set<Long> getAuthorsId() {
         return authorsId;
     }
@@ -58,6 +49,4 @@ public class TopicDTO {
     public void setAuthorsId(Set<Long> authorsId) {
         this.authorsId = authorsId;
     }
-
-    // Additional methods, if needed
 }
