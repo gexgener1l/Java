@@ -16,8 +16,16 @@ public class WebPost {
     private String content;
     private Date createdAt;  // Дата создания поста
 
-//     Конструктор без параметров (для JPA)
+    /**
+     * Default constructor for WebPost.
+     *
+     * <p>This constructor is intentionally left empty. If specific initialization logic is
+     * required, it should be implemented in a parameterized constructor or initialization
+     * methods to ensure proper object creation.
+     */
     public WebPost() {
+        // Empty constructor as no specific initialization logic is needed.
+        // If necessary, consider adding specific initialization logic in other constructors or methods.
     }
 
     // Геттеры и сеттеры
