@@ -1,8 +1,7 @@
 package com.webblog.blog.serveces;
 
-import com.webblog.blog.dtoClasses.AuthorDTO;
+import com.webblog.blog.dtoclasses.AuthorDTO;
 import com.webblog.blog.model.Author;
-import com.webblog.blog.model.Topic;
 import com.webblog.blog.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service

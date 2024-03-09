@@ -1,6 +1,6 @@
 package com.webblog.blog.controllers;
 
-import com.webblog.blog.dtoClasses.CommentDTO;
+import com.webblog.blog.dtoclasses.CommentDTO;
 import com.webblog.blog.model.Comment;
 import com.webblog.blog.serveces.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.webblog.blog.serveces;
 
-import com.webblog.blog.dtoClasses.TopicDTO;
+import com.webblog.blog.dtoclasses.TopicDTO;
 import com.webblog.blog.model.Topic;
 import com.webblog.blog.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
