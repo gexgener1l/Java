@@ -1,7 +1,6 @@
 package com.webblog.blog.controllers;
 
 import com.webblog.blog.dtoClasses.TopicDTO;
-import com.webblog.blog.model.Topic;
 import com.webblog.blog.serveces.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +11,12 @@ import java.util.List;
 @RequestMapping("/api/topics")
 public class TopicController {
 
+    private final TopicService topicService;
+
     @Autowired
-    private TopicService topicService;
+    public TopicController(TopicService topicService) {
+        this.topicService = topicService;
+    }
 
     @GetMapping
     public List<TopicDTO> getAllTopics() {
