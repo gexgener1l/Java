@@ -16,14 +16,17 @@ import java.util.stream.Collectors;
 @Service
 public class AuthorService {
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
 
+    @Autowired
+    public AuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
     public List<AuthorDTO> getAllAuthors() {
         List<Author> authors = authorRepository.findAll();
         return authors.stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();  // Use Stream.toList() instead of Collectors.toList()
     }
 
     public AuthorDTO getAuthorById(Long id) {
