@@ -1,15 +1,16 @@
 package com.webblog.blog.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
+//@Table(name = "web_post")
 public class WebPost {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "web_post_seq", sequenceName = "web_post_seq", allocationSize = 1)
     private Long id;
 
     private String title;
@@ -18,15 +19,14 @@ public class WebPost {
 
 //     Конструктор без параметров (для JPA)
     public WebPost() {
-        this.createdAt = new Date();
     }
 
 //     Конструктор с параметрами
-    public WebPost(String title, String content) {
-        this.title = title;
-        this.content = content;
-        this.createdAt = new Date();
-    }
+//    public WebPost(String title, String content) {
+//        this.title = title;
+//        this.content = content;
+//        this.createdAt = new Date();
+//    }
 
     // Геттеры и сеттеры
     public Long getId() {
@@ -49,8 +49,8 @@ public class WebPost {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public void setCreatedAt(Date date) {
+        this.createdAt = date;
     }
 
     // Другие методы, если необходимо

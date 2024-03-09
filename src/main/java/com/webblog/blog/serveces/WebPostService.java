@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class WebPostService {
 
@@ -16,12 +18,8 @@ public class WebPostService {
         this.webPostRepository = webPostRepository;
     }
 
-    public ResponseEntity<WebPost> createWebPost(WebPost webPost) {
-        try {
-            WebPost createdWebPost = webPostRepository.save(webPost);
-            return ResponseEntity.ok(createdWebPost);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).build();
-        }
+    public WebPost createWebPost(WebPost webPost) {
+        webPost.setCreatedAt(new Date());
+        return webPostRepository.save(webPost);
     }
 }
