@@ -1,7 +1,6 @@
 package com.webblog.blog.controllers;
 
 import com.webblog.blog.dtoClasses.AuthorDTO;
-import com.webblog.blog.model.Topic;
 import com.webblog.blog.serveces.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +11,12 @@ import java.util.List;
 @RequestMapping("/api/authors")
 public class AuthorController {
 
+    private final AuthorService authorService;
+
     @Autowired
-    private AuthorService authorService;
+    public AuthorController(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     @GetMapping
     public List<AuthorDTO> getAllAuthors() {
@@ -38,5 +41,4 @@ public class AuthorController {
     public void deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
     }
-
 }
