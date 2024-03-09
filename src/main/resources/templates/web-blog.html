@@ -53,15 +53,6 @@
         <p th:text="${webPost.content}">Default Content</p>
         <button th:onclick="'deletePost(' + ${webPost.id} + ')'" class="delete-button">X</button>
         <button th:onclick="'updatePost(' + ${webPost.id} + ')'" class="update-button">upd</button>
-
-        <!-- Text label for leaving comments -->
-<!--        <label for="commentInput" class="comment-label">Leave a comment:</label>-->
-<!--        <input type="text" id="commentInput" name="commentInput" th:placeholder="'Comment for ' + ${webPost.title}" class="comment-input">-->
-<!--        <button th:attr="data-post-id=${webPost.id}, data-post-title=${webPost.title}" class="comment-button" th:onclick="'leaveComment(' + ${webPost.id} + ',\'' + ${webPost.title} + '\')'">Leave Comment</button>-->
-
-
-
-
     </article>
 
 </section>
@@ -102,7 +93,6 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Optionally handle success response
                     location.reload();
                 })
                 .catch(error => {
@@ -133,7 +123,6 @@
                         return response.json();
                     })
                     .then(data => {
-                        // Optionally handle success response
                         location.reload();
                     })
                     .catch(error => {

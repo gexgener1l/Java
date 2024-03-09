@@ -14,14 +14,18 @@ import java.util.stream.Collectors;
 @Service
 public class TopicService {
 
+    private final TopicRepository topicRepository;
+
     @Autowired
-    private TopicRepository topicRepository;
+    public TopicService(TopicRepository topicRepository) {
+        this.topicRepository = topicRepository;
+    }
 
     public List<TopicDTO> getAllTopics() {
         List<Topic> topics = topicRepository.findAll();
         return topics.stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();  // Use Stream.toList() instead of Collectors.toList()
     }
 
     public TopicDTO getTopicById(Long id) {
@@ -35,11 +39,6 @@ public class TopicService {
         topic.setName(topicDTO.getName());
         topic.setDescription(topicDTO.getDescription());
         topic.setAuthorsId(topicDTO.getAuthorsId());
-
-        // Convert AuthorDTOs to Author entities if needed
-        // Set<Author> authors = mapAuthorsToEntities(topicDTO.getAuthorsId());
-        // topic.setAuthors(authors);
-
         topic = topicRepository.save(topic);
         return convertToDTO(topic);
     }
@@ -55,11 +54,9 @@ public class TopicService {
         Topic existingTopic = topicRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Topic not found with id: " + id));
 
-        // Update the existing topic's properties
         existingTopic.setName(updatedTopicDTO.getName());
         existingTopic.setDescription(updatedTopicDTO.getDescription());
         existingTopic.setAuthorsId(updatedTopicDTO.getAuthorsId());
-        // Save the updated topic
         existingTopic = topicRepository.save(existingTopic);
 
         return convertToDTO(existingTopic);

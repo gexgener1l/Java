@@ -3,7 +3,6 @@ package com.webblog.blog.serveces;
 import com.webblog.blog.repository.WebPostRepository;
 import com.webblog.blog.model.WebPost;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
