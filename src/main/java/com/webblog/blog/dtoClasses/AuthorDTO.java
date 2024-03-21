@@ -1,4 +1,4 @@
-package com.webblog.blog.dtoclasses;
+package com.webblog.blog.dtoClasses;
 
 import java.util.Set;
 

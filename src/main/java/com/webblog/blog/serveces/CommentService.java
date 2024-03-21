@@ -1,6 +1,6 @@
 package com.webblog.blog.serveces;
 
-import com.webblog.blog.dtoclasses.CommentDTO;
+import com.webblog.blog.dtoClasses.CommentDTO;
 import com.webblog.blog.model.Comment;
 import com.webblog.blog.repository.CommentRepository;
 import com.webblog.blog.repository.WebPostRepository;

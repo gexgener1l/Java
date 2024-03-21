@@ -1,6 +1,8 @@
 package com.webblog.blog.serveces;
 
-import com.webblog.blog.dtoclasses.AuthorDTO;
+import lombok.extern.slf4j.Slf4j;
+import com.webblog.blog.dtoClasses.AuthorDTO;
+import com.webblog.blog.component.AuthorCache;
 import com.webblog.blog.model.Author;
 import com.webblog.blog.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,26 +14,46 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class AuthorService {
 
     private final AuthorRepository authorRepository;
+    private final AuthorCache authorCache; // Добавьте поле AuthorCache
 
     @Autowired
-    public AuthorService(AuthorRepository authorRepository) {
+    public AuthorService(AuthorRepository authorRepository, AuthorCache authorCache) {
         this.authorRepository = authorRepository;
+        this.authorCache = authorCache;
     }
     public List<AuthorDTO> getAllAuthors() {
         List<Author> authors = authorRepository.findAll();
+        log.info("find all authors.");
         return authors.stream()
                 .map(this::convertToDTO)
                 .toList();  // Use Stream.toList() instead of Collectors.toList()
     }
 
     public AuthorDTO getAuthorById(Long id) {
+        AuthorDTO cachedAuthor = authorCache.get(id);
+        if (cachedAuthor != null) {
+            System.out.println("data getted from cache.");
+            log.info("data getted from cache.");
+            System.out.println("Chach:"+cachedAuthor);
+            log.info("Cache="+cachedAuthor);
+            return cachedAuthor;
+        }
+
         Author author = authorRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Author not found with id: " + id));
-        return convertToDTO(author);
+
+        AuthorDTO authorDTO = convertToDTO(author);
+        authorCache.put(id, authorDTO);
+
+        System.out.println("data getted from database.");
+        log.info("data getted from database.");
+        log.info("find author with id:"+id);
+        return authorDTO;
     }
 
     public AuthorDTO saveAuthor(AuthorDTO authorDTO) {
@@ -44,6 +66,10 @@ public class AuthorService {
 
 
     public void deleteAuthor(Long id) {
+        authorCache.evict(id);
+        System.out.println("data deleted from cache.");
+        log.info("data deleted from cache.");
+        log.info("deleted user with id:"+id);
         authorRepository.deleteById(id);
     }
 
@@ -65,5 +91,10 @@ public class AuthorService {
 
         return convertToDTO(existingAuthor);
     }
-
+    public List<AuthorDTO> getAuthorsByTopicId(Long topicId) {
+        List<Author> authors = authorRepository.findAuthorsByTopicId(topicId);
+        return authors.stream()
+                .map(this::convertToDTO)
+                .toList();
+    }
 }

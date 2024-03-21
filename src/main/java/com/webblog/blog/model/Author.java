@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "authors")
+@Table(name = "author")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,13 +14,13 @@ public class Author {
 
     @ManyToMany
     @JoinTable(
-            name = "author_topics",
+            name = "author_topic",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "topic_id"))
     private Set<Topic> topics;
 
     @ElementCollection
-    @CollectionTable(name = "author_topics", joinColumns = @JoinColumn(name = "author_id"))
+    @CollectionTable(name = "author_topic", joinColumns = @JoinColumn(name = "author_id"))
     @Column(name = "topic_id")
     private Set<Long> topicsId;
 

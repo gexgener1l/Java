@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "topics")
+@Table(name = "topic")
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class Topic {
     private Set<Author> authors;
 
     @ElementCollection
-    @CollectionTable(name = "topic_authors", joinColumns = @JoinColumn(name = "topic_id"))
+    @CollectionTable(name = "topic_author", joinColumns = @JoinColumn(name = "topic_id"))
     @Column(name = "author_id")
     private Set<Long> authorsId;
 
